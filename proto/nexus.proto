@@ -1,0 +1,64 @@
+syntax = "proto3";
+package nexus.v1;
+
+service NexusKnowledgeService {
+    // 供 Agent 极速查询上下文片段
+    rpc RetrieveContext(RetrieveRequest) returns (RetrieveResponse);
+    
+    // Agent 吸收新经验
+    rpc IngestExperience(IngestRequest) returns (IngestResponse);
+    
+    // 强制将当前内存的变更刷入磁盘树，生成新的快照点
+    rpc CommitSnapshot(CommitRequest) returns (CommitResponse);
+    
+    // 发生错误时，回滚到上一个持久化快照，丢弃未 Commit 的 WAL 记录
+    rpc RollbackState(RollbackRequest) returns (RollbackResponse);
+}
+
+message RetrieveRequest {
+    repeated float query_tensor = 1;
+    repeated string anchors = 2;
+    uint32 top_k = 3;
+}
+
+message RetrieveResponse {
+    repeated MemoryFragment fragments = 1;
+    float compute_latency_ms = 2;
+}
+
+message IngestRequest {
+    repeated MemoryFragment fragments = 1;
+}
+
+message IngestResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message CommitRequest {
+    string admin_signature = 1;
+}
+
+message CommitResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message RollbackRequest {
+    string admin_signature = 1;
+    bool force = 2;
+}
+
+message RollbackResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message MemoryFragment {
+    string id = 1;
+    string file_path = 2;
+    string content_snippet = 3;
+    float similarity_score = 4;
+    repeated float embedding = 5;
+    repeated string metadata_anchors = 6;
+}

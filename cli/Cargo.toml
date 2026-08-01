@@ -1,0 +1,33 @@
+[package]
+name = "cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+anyhow = "1.0"
+colored = "2.1"
+tokio = { version = "1", features = ["full"] }
+nexus-core = { path = "../core" }
+nexus-proto = { path = "../proto" }
+tracing-subscriber = "0.3"
+tonic = "0.11"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+rand = "0.8"
+hex = "0.4"
+prost = "0.12"
+reqwest = { version = "0.12", features = ["json"] }
+serde_json = "1.0"
+
+[package.metadata.deb]
+name = "nexus-base"
+maintainer = "Nexus Team <admin@nexus.local>"
+copyright = "2026 Nexus Team"
+extended-description = "Nexus-Base Core Engine & CLI"
+depends = "$auto"
+section = "utility"
+priority = "optional"
+assets = [
+    ["../target/release/cli", "usr/local/bin/nexus-cli", "755"],
+    ["../target/release/server", "usr/local/bin/nexus-server", "755"]
+]

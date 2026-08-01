@@ -1,0 +1,34 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Publisher (Node.js & TypeScript)
+nexus-publisher/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cloudflare Pages specific
+.cache
+.cloudflare/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo

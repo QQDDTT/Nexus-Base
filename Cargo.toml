@@ -1,0 +1,21 @@
+[workspace]
+members = [
+    "core",
+    "server",
+    "cli",
+    "proto",
+    "tests",
+    "mcp-adapter"
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Nexus Team"]
+edition = "2021"
+
+[workspace.lints.clippy]
+clone_on_ref_ptr = "deny"
+implicit_clone = "warn"
+perf = "warn"
+style = "warn"

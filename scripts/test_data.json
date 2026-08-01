@@ -1,0 +1,45 @@
+{
+  "ingest_cases": [
+    {
+      "name": "Normal Text (标准文本)",
+      "text": "Rust is blazing fast and memory safe!",
+      "use_fake_key": false,
+      "expect_success": true
+    },
+    {
+      "name": "Empty Text (空文本摄入)",
+      "text": "",
+      "use_fake_key": false,
+      "expect_success": true
+    },
+    {
+      "name": "Special Chars & Emojis (特殊字符与多语言)",
+      "text": "こんにちは 🌍 | Drop table 'users'; -- [SQL Injection Mock]",
+      "use_fake_key": false,
+      "expect_success": true
+    },
+    {
+      "name": "Abnormal Auth (非法伪造私钥摄入)",
+      "text": "Malicious data from hacker",
+      "use_fake_key": true,
+      "expect_success": false
+    }
+  ],
+  "retrieve_cases": [
+    {
+      "name": "Normal Query (标准查询)",
+      "query": "Rust",
+      "top_k": 2
+    },
+    {
+      "name": "Large Top-K (超大限制拉取)",
+      "query": "Test",
+      "top_k": 1000
+    },
+    {
+      "name": "Emoji Query (特殊字符检索)",
+      "query": "🌍",
+      "top_k": 1
+    }
+  ]
+}
