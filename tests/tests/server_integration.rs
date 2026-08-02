@@ -1,5 +1,5 @@
 use nexus_core::NexusEngine;
-use server::NexusService;
+use nexus_server::NexusService;
 use nexus_proto::nexus::v1::nexus_knowledge_service_server::NexusKnowledgeService;
 use nexus_proto::nexus::v1::{CommitRequest, IngestRequest, RetrieveRequest, MemoryFragment as ProtoMemoryFragment};
 use std::sync::Arc;
@@ -42,6 +42,8 @@ async fn test_nexus_service_flow() {
             file_path: "/src/main.rs".to_string(),
             content_snippet: "async fn main()".to_string(),
             similarity_score: 0.0,
+            embedding: vec![],
+            metadata_anchors: vec![],
         }],
     });
     sign_request(&mut ingest_req, &signing_key);
@@ -69,7 +71,7 @@ async fn test_nexus_service_flow() {
 
 #[tokio::test]
 async fn test_nexus_service_auth_failure() {
-    let dir = tempdir().unwrap();
+    let _dir = tempdir().unwrap();
     let wal_path = std::env::temp_dir().join(format!("test_nexus_wal_{}.log", std::process::id()));
     let snapshot_path = std::env::temp_dir().join(format!("test_nexus_snap_{}.nxpack", std::process::id()));
     let config = nexus_core::EngineConfig { wal_path, snapshot_path };
@@ -97,6 +99,8 @@ async fn test_nexus_service_auth_failure() {
             file_path: "/evil.rs".to_string(),
             content_snippet: "panic!".to_string(),
             similarity_score: 0.0,
+            embedding: vec![],
+            metadata_anchors: vec![],
         }],
     });
     sign_request(&mut ingest_req_evil, &evil_signing_key);

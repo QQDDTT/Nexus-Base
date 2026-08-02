@@ -1,11 +1,11 @@
 [workspace]
 members = [
-    "core",
-    "server",
-    "cli",
-    "proto",
+    "nexus-core",
+    "nexus-server",
+    "nexus-cli",
+    "nexus-proto",
     "tests",
-    "mcp-adapter"
+    "nexus-mcp-adapter"
 ]
 resolver = "2"
 

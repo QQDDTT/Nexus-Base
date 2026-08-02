@@ -3,7 +3,7 @@ use tokio::io::{AsyncBufReadExt, BufReader};
 use tracing::{error, info};
 use tracing_subscriber::EnvFilter;
 
-use mcp_adapter::mcp_server;
+use nexus_mcp_adapter::mcp_server;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {

@@ -1,4 +1,4 @@
-use mcp_adapter::mcp_server::JsonRpcRequest;
+use nexus_mcp_adapter::mcp_server::JsonRpcRequest;
 
 #[test]
 fn test_parse_valid_request() {

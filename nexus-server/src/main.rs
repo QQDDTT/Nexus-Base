@@ -3,7 +3,7 @@ use tonic::transport::Server;
 use nexus_core::{NexusEngine, EngineConfig};
 use nexus_proto::nexus::v1::nexus_knowledge_service_server::NexusKnowledgeServiceServer;
 
-use server::NexusService;
+use nexus_server::NexusService;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

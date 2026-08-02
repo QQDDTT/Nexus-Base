@@ -1,5 +1,5 @@
 [package]
-name = "server"
+name = "nexus-server"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,8 +8,8 @@ tokio = { version = "1", features = ["full"] }
 tonic = { version = "0.11", features = ["transport"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
-nexus-core = { path = "../core" }
-nexus-proto = { path = "../proto" }
+nexus-core = { path = "../nexus-core" }
+nexus-proto = { path = "../nexus-proto" }
 ed25519-dalek = "2"
 hex = "0.4"
 

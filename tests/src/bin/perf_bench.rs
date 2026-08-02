@@ -1,5 +1,5 @@
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
-use std::sync::Arc;
+
 use tokio::task;
 use tonic::Request;
 use ed25519_dalek::{Signer, SigningKey};

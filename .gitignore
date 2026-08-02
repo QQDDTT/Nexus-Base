@@ -35,3 +35,6 @@ Thumbs.db
 
 # Agentic
 .agents/
+
+# Build Platform Output
+artifacts/
